@@ -1,0 +1,26 @@
+---
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(readr)
+myUsers <- read_csv("users.txt")
+```
+
+
+```{r, results='asis', include=TRUE,echo=FALSE}
+for (i in 1:nrow(myUsers)){
+  usr <- myUsers[i,]$user
+  pwd <- myUsers[i,]$password
+  
+  cat('\n')
+  cat(paste0("- Server address: **10.32.16.110:8787**\n"))
+  cat(paste0("- Login: **", usr, "**\n"))
+  cat(paste0("- Password: **", pwd, "**\n"))
+  cat("- This is a sandbox environment for training use only.  ")
+
+  cat('\\newline')
+  cat('\\newline')
+}
+```
