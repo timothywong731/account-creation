@@ -8,7 +8,7 @@ myUsers <- tibble(user = paste0("user",str_pad(1:100,3, "left", "0"))) %>%
   mutate(password = c(sample(c(LETTERS, letters), 6),
                       sample(c("!", "_", "~", "@","#", "$", "^", "+"), 1),
                       sample(0:9, 3)) %>% 
-           paste0(collapse = ""))
+paste0(collapse = ""))
 
 # Save the password as a flat file
 myUsers %>%
@@ -20,6 +20,7 @@ myUsers <- read_csv("users.csv")
 # Write the commands for creating new users -------------------------------
 
 myCmd <- "cmd.sh"
+
 system(paste0("rm -rf ", myCmd))
 
 for (i in 1:nrow(myUsers)) {
