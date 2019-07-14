@@ -23,10 +23,12 @@ sudo dpkg -i rstudio-server-1.2.1335-amd64.deb
 
 
 # Create RStudio Server config file
-sudo bash -c "echo -e '[*]' >> /etc/rstudio/profiles"
-sudo bash -c "echo -e 'max-memory-mb = 2048' >> /etc/rstudio/profiles"
-sudo bash -c "echo -e 'session-timeout-minutes=60' >> /etc/rstudio/profiles"
-sudo bash -c "echo -e 'session-timeout-kill-hours=4' >> /etc/rstudio/profiles"
+sudo bash -c "echo -e '
+[*]
+max-memory-mb = 2048
+session-timeout-minutes=60
+session-timeout-kill-hours=4
+' >> /etc/rstudio/profiles"
 
 
 # Restarts RStudio Server
