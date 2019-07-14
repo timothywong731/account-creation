@@ -14,7 +14,7 @@ for (i in 1:nrow(myUsers)){
   usr <- myUsers[i,]$user
   pwd <- myUsers[i,]$password
   
-  cat(paste0("- Server address: **leicester-r-training.uksouth.cloudapp.azure.com:8787**\n"))
+  cat(paste0("- Server address: **staines-r-training-july-2019.uksouth.cloudapp.azure.com:8787**\n"))
   cat(paste0("- Login: **", usr, "**\n"))
   cat(paste0("- Password: **", pwd, "**\n"))
   cat("- This is a sandbox environment for training use only.\n")
