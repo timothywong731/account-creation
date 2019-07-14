@@ -13,7 +13,8 @@ sudo apt install -y libssl-dev
 sudo apt install -y libcurl4-openssl-dev
 sudo apt install -y libxml2-dev
 sudo apt install -y texlive-full
-
+sudo apt install -y nginx
+sudo apt install -y util-linux
 
 
 # Install RStudio Server
@@ -72,3 +73,45 @@ sudo R -e "install.packages(c('abind','anytime','ape','assertthat','backports','
 
 # Install TensorFlow
 sudo R -e "tensorflow::install_tensorflow(method = 'conda', conda = 'auto', envname = 'venv')" 1>&2
+
+
+# Configure SSL for RStudio
+sudo mkdir /etc/nginx/ssl
+
+sudo openssl req -new -newkey rsa:2048 -days 365 -nodes -x509 -keyout /etc/nginx/ssl/nginx.key -out /etc/nginx/ssl/nginx.crt -subj "/C=UK/ST=Denial/O=Dis/CN=staines-r-training-july-2019.uksouth.cloudapp.azure.com"
+
+sudo chmod 600 /etc/nginx/ssl/nginx.key
+
+sudo systemctl restart nginx
+sudo rstudio-server restart
+
+
+# Create disk partition using all available space
+
+
+
+# Format the 1TB disk (/dev/sdc1) for /home
+echo 'start=2048, type=83' | sudo sfdisk /dev/sdc
+sudo partprobe
+sudo mkfs.ext4 -F /dev/sdc1
+sudo mount /dev/sdc1 /home
+sudo su -
+UUID_sdc1=$(sudo blkid | grep '^/dev/sdc1:' | grep -oE ' UUID="([a-zA-Z0-9-]*)" ' | grep -oE '\".*?\"' | grep -oE '[a-zA-Z0-9-]*')
+echo UUID=$UUID_sdc1   /home   ext4   defaults,nofail   1   2 >> /etc/fstab
+exit
+sudo fstrim /home
+
+
+# Format the 512GB disk (/dev/sdd1) for /tmp
+echo 'start=2048, type=83' | sudo sfdisk /dev/sdd
+sudo partprobe
+sudo mkfs.ext4 -F /dev/sdd1
+sudo mount /dev/sdd1 /tmp
+sudo su -
+UUID_sdd1=$(sudo blkid | grep '^/dev/sdd1:' | grep -oE ' UUID="([a-zA-Z0-9-]*)" ' | grep -oE '\".*?\"' | grep -oE '[a-zA-Z0-9-]*')
+echo UUID=$UUID_sdd1   /tmp   ext4   defaults,nofail   1   2 >> /etc/fstab
+exit
+sudo fstrim /tmp
+
+# Change permission for /tmp
+sudo chmod -R 1777 /tmp
