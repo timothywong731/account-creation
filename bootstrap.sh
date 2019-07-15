@@ -110,3 +110,27 @@ sudo fstrim /tmp
 
 # Change permission for /tmp
 sudo chmod -R 1777 /tmp
+
+
+# Install Apache Spark
+wget http://apache.mirror.anlx.net/spark/spark-2.4.3/spark-2.4.3-bin-hadoop2.7.tgz
+tar -xvf spark-2.4.3-bin-hadoop2.7.tgz
+sudo mv spark-2.4.3-bin-hadoop2.7 /usr/local/
+sudo ln -s /usr/local/spark-2.4.3-bin-hadoop2.7/ /usr/local/spark
+cd /usr/local/spark
+
+sudo su -
+echo 'export SPARK_HOME=/usr/local/spark' >> /root/.bashrc
+echo 'export export SPARK_HOME=/usr/local/spark' >> /etc/skel/.bashrc
+echo '
+local({
+  Sys.setenv(SPARK_HOME = "/usr/local/spark")
+})
+' >> /usr/lib/R/etc/Rprofile.site
+exit
+
+
+# Install Java
+sudo add-apt-repository ppa:webupd8team/java -y
+sudo apt update
+sudo apt install oracle-java8-installer
