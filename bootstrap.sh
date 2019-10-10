@@ -119,10 +119,10 @@ sudo chmod -R 1777 /tmp
 
 
 # Install Apache Spark
-wget http://apache.mirror.anlx.net/spark/spark-2.4.3/spark-2.4.3-bin-hadoop2.7.tgz
-tar -xvf spark-2.4.3-bin-hadoop2.7.tgz
-sudo mv spark-2.4.3-bin-hadoop2.7 /usr/local/
-sudo ln -s /usr/local/spark-2.4.3-bin-hadoop2.7/ /usr/local/spark
+wget http://apache.mirror.anlx.net/spark/spark-2.4.4/spark-2.4.4-bin-hadoop2.7.tgz
+tar -xvf spark-2.4.4-bin-hadoop2.7.tgz
+sudo mv spark-2.4.4-bin-hadoop2.7 /usr/local/
+sudo ln -s /usr/local/spark-2.4.4-bin-hadoop2.7/ /usr/local/spark
 cd /usr/local/spark
 
 sudo su -
