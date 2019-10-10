@@ -68,6 +68,11 @@ local({
 exit
 
 
+# Rebuild current user's home folder
+sudo rm -rf ~
+sudo mkhomedir_helper $USER
+
+
 # Update Anaconda and install SciPy
 sudo su -
 conda update conda -y
