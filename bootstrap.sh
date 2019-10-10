@@ -20,6 +20,8 @@ sudo apt install -y util-linux
 sudo apt install -y openjdk-8-jdk
 sudo apt install -y openjdk-11-jdk
 sudo apt install -y libglpk-dev
+sudo apt install -y coinor-libsymphony-dev coinor-libsymphony-doc
+
 
 # Configure Java
 sudo update-java-alternatives --set java-1.8.0-openjdk-amd64
