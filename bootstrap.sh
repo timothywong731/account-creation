@@ -19,6 +19,7 @@ sudo apt install -y nginx
 sudo apt install -y util-linux
 sudo apt install -y openjdk-8-jdk
 sudo apt install -y openjdk-11-jdk
+sudo apt install -y libglpk-dev
 
 # Configure Java
 sudo update-java-alternatives --set java-1.8.0-openjdk-amd64
