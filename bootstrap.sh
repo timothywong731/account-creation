@@ -143,3 +143,8 @@ local({
 })
 ' >> /usr/lib/R/etc/Rprofile.site
 exit
+
+
+# Rebuild current user's home folder
+sudo rm -rf ~
+sudo mkhomedir_helper $USER
