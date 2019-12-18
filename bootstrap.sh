@@ -20,6 +20,7 @@ sudo apt install -y util-linux
 sudo apt install -y openjdk-8-jdk
 sudo apt install -y openjdk-11-jdk
 sudo apt install -y libglpk-dev
+sudo apt install -y libgdal-dev
 sudo apt install -y coinor-libsymphony-dev coinor-libsymphony-doc
 
 
